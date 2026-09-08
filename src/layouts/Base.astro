@@ -1,0 +1,92 @@
+---
+import '../styles/fonts.css';
+import '../styles/global.css';
+import { site } from '../data/site';
+import SiteNav from '../components/SiteNav.astro';
+import SiteFooter from '../components/SiteFooter.astro';
+
+interface Props {
+  title: string;
+  description: string;
+}
+
+const { title, description } = Astro.props;
+const canonical = new URL(Astro.url.pathname, Astro.site).toString();
+const ogImage = new URL('/og.png', Astro.site).toString();
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'Person',
+  name: site.name,
+  alternateName: site.shortName,
+  jobTitle: site.role,
+  email: `mailto:${site.email}`,
+  url: site.url,
+  image: new URL('/img/portrait.jpg', Astro.site).toString(),
+  affiliation: {
+    '@type': 'CollegeOrUniversity',
+    name: site.institution,
+    department: site.group,
+  },
+  alumniOf: [
+    { '@type': 'CollegeOrUniversity', name: 'University of Sheffield' },
+    { '@type': 'CollegeOrUniversity', name: 'North South University' },
+  ],
+  knowsAbout: [...site.interests],
+  sameAs: [
+    'https://scholar.google.com/citations?user=DGYUifQAAAAJ&hl=en',
+    'https://github.com/Mdnaimulislam',
+    'https://www.linkedin.com/in/md-naimul/',
+    'https://orcid.org/0000-0001-9962-315X',
+  ],
+};
+---
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <meta name="author" content={site.name} />
+    <meta name="robots" content="index, follow" />
+
+    <meta property="og:type" content="profile" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:image" content={ogImage} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content={`${site.name} — ${site.role}, ${site.institution}`} />
+    <meta property="og:site_name" content={site.shortName} />
+    <meta property="profile:first_name" content="Mohammod" />
+    <meta property="profile:last_name" content="Suvon" />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImage} />
+
+    <link
+      rel="preload"
+      href="/fonts/source-serif-4-latin-wght-normal.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
+    <link rel="preload" href="/fonts/inter-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin />
+
+    <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to content</a>
+    <SiteNav />
+    <main id="main">
+      <slot />
+    </main>
+    <SiteFooter />
+  </body>
+</html>
