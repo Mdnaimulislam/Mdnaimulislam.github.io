@@ -1,0 +1,87 @@
+---
+import Base from '../layouts/Base.astro';
+import Hero from '../components/Hero.astro';
+import Section from '../components/Section.astro';
+import About from '../components/About.astro';
+import ResearchThemes from '../components/ResearchThemes.astro';
+import Projects from '../components/Projects.astro';
+import Publications from '../components/Publications.astro';
+import Experience from '../components/Experience.astro';
+import AwardsTalks from '../components/AwardsTalks.astro';
+import Service from '../components/Service.astro';
+import SoftwareList from '../components/SoftwareList.astro';
+import Contact from '../components/Contact.astro';
+import { site } from '../data/site';
+
+const title = `${site.name} — ${site.role}, ${site.institution}`;
+const description =
+  'AI Research Engineer at the University of Sheffield working on multimodal machine learning for cardiovascular health, medical imaging and low-cost clinical AI.';
+---
+
+<Base title={title} description={description}>
+  <Hero />
+
+  <Section
+    id="about"
+    kicker="About"
+    title="Machine learning that has to work in a real clinic"
+  >
+    <About />
+  </Section>
+
+  <Section
+    id="research"
+    kicker="Research"
+    title="What I work on"
+    lede="Four questions run through my work. They are ordered from the clinical problem down to the methods and the infrastructure that make an answer reusable."
+  >
+    <ResearchThemes />
+  </Section>
+
+  <Section
+    id="projects"
+    kicker="Selected projects"
+    title="Systems I have built"
+    lede="Each of these started as a clinical constraint rather than a benchmark. Code is public where the data licence allows it."
+  >
+    <Projects />
+  </Section>
+
+  <Section
+    id="publications"
+    kicker="Publications"
+    title="Papers"
+    lede="Selected work is shown first. Switch the filter to see everything, including earlier computer vision work from my undergraduate years."
+  >
+    <Publications />
+  </Section>
+
+  <Section id="experience" kicker="Experience" title="Appointments">
+    <Experience />
+  </Section>
+
+  <Section id="recognition" kicker="Recognition" title="Awards and talks">
+    <AwardsTalks />
+  </Section>
+
+  <Section
+    id="service"
+    kicker="Academic service"
+    title="Reviewing, organising and grants"
+  >
+    <Service />
+  </Section>
+
+  <Section
+    id="software"
+    kicker="Open source"
+    title="Software and community"
+    lede="Research software I maintain or contribute to, and the teaching material behind the UK Open Multimodal AI Network."
+  >
+    <SoftwareList />
+  </Section>
+
+  <Section id="contact" kicker="Contact" title="Get in touch">
+    <Contact />
+  </Section>
+</Base>
