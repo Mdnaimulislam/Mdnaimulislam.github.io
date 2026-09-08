@@ -1,0 +1,55 @@
+---
+import { site } from '../data/site';
+const year = new Date().getFullYear();
+---
+
+<footer class="site-footer">
+  <div class="wrap footer-inner">
+    <p class="footer-name">{site.name}</p>
+    <p class="footer-meta">
+      &copy; {year} <span aria-hidden="true">·</span> Built with
+      <a href="https://astro.build" target="_blank" rel="noopener">Astro</a>
+      <span aria-hidden="true">·</span>
+      <a href="https://github.com/Mdnaimulislam" target="_blank" rel="noopener">Source</a>
+    </p>
+  </div>
+</footer>
+
+<style>
+  .site-footer {
+    border-top: 1px solid var(--line);
+    padding-block: var(--s-6);
+    margin-top: var(--s-4);
+  }
+
+  .footer-inner {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: var(--s-4);
+    flex-wrap: wrap;
+  }
+
+  .footer-name {
+    margin: 0;
+    font-family: var(--font-display);
+    font-size: var(--step-0);
+    font-weight: 600;
+  }
+
+  .footer-meta {
+    margin: 0;
+    font-size: var(--step--1);
+    color: var(--ink-3);
+  }
+
+  .footer-meta a {
+    color: var(--ink-2);
+    text-decoration: none;
+    border-bottom: 1px solid var(--line-strong);
+  }
+
+  .footer-meta a:hover {
+    color: var(--accent);
+  }
+</style>

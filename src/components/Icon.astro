@@ -1,0 +1,54 @@
+---
+interface Props {
+  name: 'email' | 'scholar' | 'github' | 'linkedin' | 'orcid' | 'cv' | 'arrow' | 'link';
+  size?: number;
+}
+const { name, size = 16 } = Astro.props;
+---
+
+<svg
+  width={size}
+  height={size}
+  viewBox="0 0 24 24"
+  fill="none"
+  stroke="currentColor"
+  stroke-width="1.7"
+  stroke-linecap="round"
+  stroke-linejoin="round"
+  aria-hidden="true"
+  focusable="false"
+>
+  {name === 'email' && <><rect x="2.5" y="4.5" width="19" height="15" rx="2.2" /><path d="m3 6.5 9 6.2 9-6.2" /></>}
+  {
+    name === 'scholar' && (
+      <>
+        <path d="M12 3 1.8 8.6 12 14.2l10.2-5.6L12 3Z" />
+        <path d="M5.6 10.7v4.6c0 1.9 2.9 3.4 6.4 3.4s6.4-1.5 6.4-3.4v-4.6" />
+      </>
+    )
+  }
+  {
+    name === 'github' && (
+      <path d="M9.2 20.4c-4 1.2-4-2.1-5.6-2.5m11.2 5v-3.4a3 3 0 0 0-.8-2.3c2.6-.3 5.4-1.3 5.4-5.9a4.6 4.6 0 0 0-1.3-3.2 4.3 4.3 0 0 0-.1-3.2s-1-.3-3.4 1.3a11.7 11.7 0 0 0-6 0C6.2 5.6 5.2 5.9 5.2 5.9a4.3 4.3 0 0 0-.1 3.2A4.6 4.6 0 0 0 3.8 12.4c0 4.5 2.8 5.6 5.4 5.9a3 3 0 0 0-.8 2.3v3.4" />
+    )
+  }
+  {
+    name === 'linkedin' && (
+      <>
+        <rect x="2.8" y="2.8" width="18.4" height="18.4" rx="2.4" />
+        <path d="M7.2 10.6v6.2M7.2 7.4v.02M11.4 16.8v-6.2M11.4 13.2c0-1.5.9-2.6 2.4-2.6s2.4 1 2.4 2.6v3.6" />
+      </>
+    )
+  }
+  {
+    name === 'orcid' && (
+      <>
+        <circle cx="12" cy="12" r="9.2" />
+        <path d="M8.4 8.2v7.6M8.4 6.3v.02M11.8 15.8V8.2h2.1a3.8 3.8 0 0 1 0 7.6h-2.1Z" />
+      </>
+    )
+  }
+  {name === 'cv' && <><path d="M14 2.8H7a2 2 0 0 0-2 2v14.4a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V7.8Z" /><path d="M14 2.8v5h5M9 13h6M9 16.5h4" /></>}
+  {name === 'arrow' && <path d="M5 12h13m-5.5-5.5L19 12l-6.5 5.5" />}
+  {name === 'link' && <><path d="M10.5 13.5a3.6 3.6 0 0 0 5.4.4l2.8-2.8a3.6 3.6 0 1 0-5.1-5.1l-1.6 1.6" /><path d="M13.5 10.5a3.6 3.6 0 0 0-5.4-.4l-2.8 2.8a3.6 3.6 0 1 0 5.1 5.1l1.6-1.6" /></>}
+</svg>

@@ -1,0 +1,124 @@
+---
+import { site } from '../data/site';
+import { education } from '../data/cv';
+---
+
+<div class="about-grid">
+  <div class="about-prose">
+    {site.intro.map((paragraph) => <p>{paragraph}</p>)}
+    <p>
+      My work sits between a machine learning group and a hospital. A method is only finished when a
+      clinician can question its output, when it degrades gracefully on the data a general practice
+      actually holds, and when someone else can run the code.
+    </p>
+  </div>
+
+  <aside class="about-aside" aria-label="Education">
+    <h3 class="about-aside-title">Education</h3>
+    <ol class="about-education">
+      {
+        education.map((degree) => (
+          <li>
+            <p class="about-degree">
+              {degree.degree}, {degree.field}
+            </p>
+            <p class="about-org">{degree.org}</p>
+            <p class="mono about-years">
+              {degree.start} – {degree.end}
+              {degree.distinction && <span class="about-distinction">{degree.distinction}</span>}
+            </p>
+          </li>
+        ))
+      }
+    </ol>
+  </aside>
+</div>
+
+<style>
+  .about-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1.7fr) minmax(0, 1fr);
+    gap: clamp(2rem, 6vw, 4.5rem);
+    align-items: start;
+  }
+
+  .about-prose p {
+    font-size: var(--step-1);
+    line-height: 1.68;
+    color: var(--ink-2);
+    max-width: 62ch;
+  }
+
+  .about-prose p:first-child {
+    color: var(--ink);
+  }
+
+  .about-aside {
+    border-left: 1px solid var(--line);
+    padding-left: clamp(1.25rem, 3vw, 2rem);
+  }
+
+  .about-aside-title {
+    font-family: var(--font-mono);
+    font-size: var(--step--2);
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--ink-3);
+    margin-bottom: var(--s-4);
+  }
+
+  .about-education li + li {
+    margin-top: var(--s-4);
+    padding-top: var(--s-4);
+    border-top: 1px solid var(--line);
+  }
+
+  .about-degree {
+    margin: 0;
+    font-weight: 600;
+    font-size: var(--step-0);
+    line-height: 1.4;
+  }
+
+  .about-org {
+    margin: 0.15rem 0 0;
+    color: var(--ink-2);
+    font-size: var(--step--1);
+  }
+
+  .about-years {
+    margin: 0.3rem 0 0;
+    display: flex;
+    align-items: center;
+    gap: var(--s-3);
+    flex-wrap: wrap;
+  }
+
+  .about-distinction {
+    color: var(--accent);
+    border: 1px solid var(--accent-line);
+    background: var(--accent-soft);
+    border-radius: 100px;
+    padding: 0.05em 0.6em;
+    font-size: var(--step--2);
+  }
+
+  @media (max-width: 860px) {
+    .about-grid {
+      grid-template-columns: minmax(0, 1fr);
+      gap: var(--s-6);
+    }
+
+    .about-aside {
+      border-left: 0;
+      border-top: 1px solid var(--line);
+      padding-left: 0;
+      padding-top: var(--s-5);
+    }
+
+    .about-prose p {
+      font-size: var(--step-0);
+    }
+  }
+</style>

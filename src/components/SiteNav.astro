@@ -1,0 +1,317 @@
+---
+import { site } from '../data/site';
+
+const items = [
+  { id: 'about', label: 'About' },
+  { id: 'research', label: 'Research' },
+  { id: 'projects', label: 'Projects' },
+  { id: 'publications', label: 'Publications' },
+  { id: 'experience', label: 'Experience' },
+  { id: 'service', label: 'Service' },
+  { id: 'contact', label: 'Contact' },
+];
+---
+
+<header class="site-nav">
+  <div class="wrap nav-inner">
+    <a class="nav-brand" href="#top">
+      <span class="nav-brand-name">{site.shortName}</span>
+      <span class="nav-brand-role">{site.role}</span>
+    </a>
+
+    <nav class="nav-links" id="nav-links" aria-label="Sections">
+      <ul>
+        {
+          items.map((item) => (
+            <li>
+              <a href={`#${item.id}`} data-nav-link={item.id}>
+                {item.label}
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </nav>
+
+    <div class="nav-actions">
+      <button class="theme-toggle" id="theme-toggle" type="button" aria-label="Switch colour theme">
+        <svg class="icon-sun" viewBox="0 0 24 24" width="17" height="17" aria-hidden="true">
+          <circle cx="12" cy="12" r="4.2" fill="none" stroke="currentColor" stroke-width="1.6"></circle>
+          <path
+            d="M12 2.5v2.2M12 19.3v2.2M2.5 12h2.2M19.3 12h2.2M5.2 5.2l1.6 1.6M17.2 17.2l1.6 1.6M18.8 5.2l-1.6 1.6M6.8 17.2l-1.6 1.6"
+            stroke="currentColor"
+            stroke-width="1.6"
+            stroke-linecap="round"></path>
+        </svg>
+        <svg class="icon-moon" viewBox="0 0 24 24" width="17" height="17" aria-hidden="true">
+          <path
+            d="M20 14.4A8.2 8.2 0 0 1 9.6 4a8.4 8.4 0 1 0 10.4 10.4Z"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.6"
+            stroke-linejoin="round"></path>
+        </svg>
+      </button>
+
+      <button class="nav-toggle" id="nav-toggle" type="button" aria-expanded="false" aria-controls="nav-links">
+        <span class="nav-toggle-bars" aria-hidden="true"><span></span><span></span></span>
+        <span class="nav-toggle-label">Menu</span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<style>
+  .site-nav {
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    background: color-mix(in srgb, var(--paper) 88%, transparent);
+    backdrop-filter: saturate(1.6) blur(10px);
+    -webkit-backdrop-filter: saturate(1.6) blur(10px);
+    border-bottom: 1px solid var(--line);
+  }
+
+  .nav-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--s-4);
+    min-height: 3.5rem;
+  }
+
+  .nav-brand {
+    display: flex;
+    flex-direction: column;
+    text-decoration: none;
+    color: var(--ink);
+    line-height: 1.25;
+    flex-shrink: 0;
+  }
+
+  .nav-brand-name {
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: var(--step-0);
+    letter-spacing: -0.01em;
+  }
+
+  .nav-brand-role {
+    font-family: var(--font-mono);
+    font-size: 0.6875rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--ink-3);
+  }
+
+  .nav-links ul {
+    display: flex;
+    gap: var(--s-5);
+  }
+
+  .nav-links a {
+    display: block;
+    font-size: var(--step--1);
+    color: var(--ink-2);
+    text-decoration: none;
+    padding: 0.35rem 0;
+    border-bottom: 1.5px solid transparent;
+    transition: color 0.15s ease, border-color 0.15s ease;
+  }
+
+  .nav-links a:hover {
+    color: var(--ink);
+  }
+
+  .nav-links a[aria-current='true'] {
+    color: var(--ink);
+    border-bottom-color: var(--accent);
+  }
+
+  .nav-actions {
+    display: flex;
+    align-items: center;
+    gap: var(--s-2);
+    flex-shrink: 0;
+  }
+
+  .theme-toggle,
+  .nav-toggle {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    background: transparent;
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    color: var(--ink-2);
+    cursor: pointer;
+    padding: 0.4rem 0.5rem;
+    font: inherit;
+    font-size: var(--step--1);
+    transition: border-color 0.15s ease, color 0.15s ease;
+  }
+
+  .theme-toggle:hover,
+  .nav-toggle:hover {
+    color: var(--ink);
+    border-color: var(--line-strong);
+  }
+
+  .icon-moon {
+    display: none;
+  }
+
+  :global(:root[data-theme='dark']) .icon-sun {
+    display: none;
+  }
+
+  :global(:root[data-theme='dark']) .icon-moon {
+    display: block;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :global(:root:not([data-theme='light'])) .icon-sun {
+      display: none;
+    }
+    :global(:root:not([data-theme='light'])) .icon-moon {
+      display: block;
+    }
+  }
+
+  .nav-toggle {
+    display: none;
+    padding-inline: 0.6rem;
+  }
+
+  .nav-toggle-bars {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+    width: 14px;
+  }
+
+  .nav-toggle-bars span {
+    height: 1.5px;
+    background: currentColor;
+    border-radius: 2px;
+  }
+
+  @media (max-width: 860px) {
+    .nav-toggle {
+      display: inline-flex;
+    }
+
+    .nav-links {
+      position: absolute;
+      top: 100%;
+      left: 0;
+      right: 0;
+      background: var(--surface);
+      border-bottom: 1px solid var(--line);
+      box-shadow: 0 10px 30px -18px rgb(0 0 0 / 0.4);
+      display: none;
+    }
+
+    .nav-links[data-open='true'] {
+      display: block;
+    }
+
+    .nav-links ul {
+      flex-direction: column;
+      gap: 0;
+      padding: var(--s-2) var(--gutter) var(--s-4);
+    }
+
+    .nav-links a {
+      padding: 0.7rem 0;
+      border-bottom: 1px solid var(--line);
+      font-size: var(--step-0);
+    }
+
+    .nav-links li:last-child a {
+      border-bottom: 0;
+    }
+
+    .nav-links a[aria-current='true'] {
+      border-bottom-color: var(--line);
+      color: var(--accent);
+    }
+  }
+</style>
+
+<script>
+  // --- Theme toggle -------------------------------------------------------
+  const root = document.documentElement;
+  const toggle = document.getElementById('theme-toggle');
+
+  const stored = (() => {
+    try {
+      return localStorage.getItem('theme');
+    } catch {
+      return null;
+    }
+  })();
+
+  if (stored === 'light' || stored === 'dark') {
+    root.setAttribute('data-theme', stored);
+  }
+
+  toggle?.addEventListener('click', () => {
+    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+    const current = root.getAttribute('data-theme') ?? (prefersDark ? 'dark' : 'light');
+    const next = current === 'dark' ? 'light' : 'dark';
+    root.setAttribute('data-theme', next);
+    try {
+      localStorage.setItem('theme', next);
+    } catch {
+      /* storage unavailable — the toggle still works for this page view */
+    }
+  });
+
+  // --- Mobile menu --------------------------------------------------------
+  const navToggle = document.getElementById('nav-toggle');
+  const navLinks = document.getElementById('nav-links');
+
+  navToggle?.addEventListener('click', () => {
+    const open = navLinks?.getAttribute('data-open') === 'true';
+    navLinks?.setAttribute('data-open', String(!open));
+    navToggle.setAttribute('aria-expanded', String(!open));
+  });
+
+  navLinks?.querySelectorAll('a').forEach((link) => {
+    link.addEventListener('click', () => {
+      navLinks.setAttribute('data-open', 'false');
+      navToggle?.setAttribute('aria-expanded', 'false');
+    });
+  });
+
+  // --- Active section -----------------------------------------------------
+  const linkFor = new Map<string, HTMLAnchorElement>();
+  document.querySelectorAll<HTMLAnchorElement>('[data-nav-link]').forEach((el) => {
+    linkFor.set(el.dataset.navLink!, el);
+  });
+
+  const sections = [...linkFor.keys()]
+    .map((id) => document.getElementById(id))
+    .filter((el): el is HTMLElement => Boolean(el));
+
+  if (sections.length && 'IntersectionObserver' in window) {
+    let active = '';
+    const observer = new IntersectionObserver(
+      (entries) => {
+        for (const entry of entries) {
+          if (entry.isIntersecting) {
+            const id = entry.target.id;
+            if (id !== active) {
+              linkFor.get(active)?.removeAttribute('aria-current');
+              linkFor.get(id)?.setAttribute('aria-current', 'true');
+              active = id;
+            }
+          }
+        }
+      },
+      { rootMargin: '-20% 0px -70% 0px', threshold: 0 }
+    );
+    sections.forEach((section) => observer.observe(section));
+  }
+</script>

@@ -1,0 +1,94 @@
+---
+import { appointments } from '../data/cv';
+---
+
+<ol class="roles">
+  {
+    appointments.map((role) => (
+      <li class="role">
+        <div class="role-dates mono">
+          <span>{role.start}</span>
+          <span class="role-dash" aria-hidden="true">–</span>
+          <span>{role.end}</span>
+        </div>
+        <div class="role-body">
+          <h3 class="role-title">{role.role}</h3>
+          <p class="role-org">
+            {role.org}
+            {role.unit && <span class="role-unit">{role.unit}</span>}
+            <span class="role-location">{role.location}</span>
+          </p>
+          {role.detail && <p class="role-detail">{role.detail}</p>}
+        </div>
+      </li>
+    ))
+  }
+</ol>
+
+<style>
+  .role {
+    display: grid;
+    grid-template-columns: 11rem minmax(0, 1fr);
+    gap: var(--s-4);
+    padding-block: var(--s-5);
+    border-top: 1px solid var(--line);
+  }
+
+  .role:first-child {
+    border-top: 0;
+    padding-top: 0;
+  }
+
+  .role-dates {
+    display: flex;
+    gap: 0.35rem;
+    padding-top: 0.25rem;
+    color: var(--ink-3);
+    white-space: nowrap;
+  }
+
+  .role-title {
+    font-size: var(--step-1);
+    font-weight: 600;
+  }
+
+  .role-org {
+    margin: 0.25rem 0 0;
+    font-size: var(--step--1);
+    color: var(--ink-2);
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.35rem 0.6rem;
+  }
+
+  .role-unit,
+  .role-location {
+    color: var(--ink-3);
+  }
+
+  .role-unit::before,
+  .role-location::before {
+    content: '·';
+    margin-right: 0.6rem;
+    color: var(--line-strong);
+  }
+
+  .role-detail {
+    margin: var(--s-3) 0 0;
+    font-size: var(--step--1);
+    color: var(--ink-2);
+    max-width: 62ch;
+    line-height: 1.6;
+  }
+
+  @media (max-width: 640px) {
+    .role {
+      grid-template-columns: minmax(0, 1fr);
+      gap: var(--s-2);
+    }
+
+    .role-dates {
+      padding-top: 0;
+    }
+  }
+</style>

@@ -1,0 +1,23 @@
+---
+interface Props {
+  id: string;
+  kicker?: string;
+  title: string;
+  lede?: string;
+}
+const { id, kicker, title, lede } = Astro.props;
+---
+
+<section class="section" id={id} aria-labelledby={`${id}-title`}>
+  <div class="wrap">
+    <div class="section-head">
+      <div>
+        {kicker && <span class="section-kicker">{kicker}</span>}
+        <h2 class="section-title" id={`${id}-title`}>{title}</h2>
+      </div>
+      <slot name="head-aside" />
+    </div>
+    {lede && <p class="section-lede">{lede}</p>}
+    <slot />
+  </div>
+</section>

@@ -1,0 +1,323 @@
+---
+import { publications, type Publication } from '../data/publications';
+import Icon from './Icon.astro';
+
+const SELF = 'M. N. I. Suvon';
+
+const typeLabel: Record<Publication['type'], string> = {
+  journal: 'Journal',
+  conference: 'Conference',
+  preprint: 'Preprint',
+  abstract: 'Abstract',
+};
+
+const ordered = [...publications].sort((a, b) => {
+  if (b.year !== a.year) return b.year - a.year;
+  if (Boolean(b.selected) !== Boolean(a.selected)) return Number(b.selected) - Number(a.selected);
+  return (b.citations ?? 0) - (a.citations ?? 0);
+});
+
+const filters = [
+  { id: 'selected', label: 'Selected' },
+  { id: 'all', label: `All (${publications.length})` },
+  { id: 'journal', label: 'Journal' },
+  { id: 'conference', label: 'Conference' },
+  { id: 'preprint', label: 'Preprints' },
+];
+---
+
+<div class="pubs" data-filter="selected">
+  <div class="pub-filters" role="group" aria-label="Filter publications">
+    {
+      filters.map((filter, index) => (
+        <button
+          type="button"
+          class="pub-filter"
+          data-filter-btn={filter.id}
+          aria-pressed={index === 0 ? 'true' : 'false'}
+        >
+          {filter.label}
+        </button>
+      ))
+    }
+  </div>
+
+  <ol class="pub-list">
+    {
+      ordered.map((pub) => {
+        const parts = pub.authors.split(SELF);
+        return (
+          <li
+            class="pub"
+            id={`pub-${pub.id}`}
+            data-selected={pub.selected ? 'true' : 'false'}
+            data-type={pub.type}
+          >
+            <p class="pub-year mono">{pub.year}</p>
+            <div class="pub-body">
+              <h3 class="pub-title">
+                {pub.links.length > 0 ? (
+                  <a href={pub.links[0].href} target="_blank" rel="noopener">
+                    {pub.title}
+                  </a>
+                ) : (
+                  pub.title
+                )}
+              </h3>
+              <p class="pub-authors">
+                {parts.map((part, i) => (
+                  <>
+                    {part}
+                    {i < parts.length - 1 && <strong>{SELF}</strong>}
+                  </>
+                ))}
+              </p>
+              <p class="pub-venue">{pub.venue}</p>
+              <div class="pub-meta">
+                <span class={`pub-tag pub-tag--${pub.type}`}>{typeLabel[pub.type]}</span>
+                <span class="pub-tag pub-tag--venue">{pub.venueShort}</span>
+                {pub.authorPosition === 'first' && <span class="pub-tag pub-tag--first">First author</span>}
+                {pub.note && <span class="pub-tag pub-tag--note">{pub.note}</span>}
+                {pub.status && <span class="pub-tag pub-tag--status">{pub.status}</span>}
+                {pub.citations !== undefined && pub.citations > 0 && (
+                  <span class="pub-cites mono">
+                    {pub.citations} {pub.citations === 1 ? 'citation' : 'citations'}
+                  </span>
+                )}
+              </div>
+              {pub.links.length > 0 && (
+                <ul class="link-list pub-links">
+                  {pub.links.map((link) => (
+                    <li>
+                      <a href={link.href} target="_blank" rel="noopener">
+                        {link.label}
+                        <Icon name="arrow" size={13} />
+                      </a>
+                    </li>
+                  ))}
+                </ul>
+              )}
+            </div>
+          </li>
+        );
+      })
+    }
+  </ol>
+</div>
+
+<style>
+  .pub-filters {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--s-2);
+    margin-bottom: var(--s-6);
+  }
+
+  .pub-filter {
+    font: inherit;
+    font-size: var(--step--1);
+    color: var(--ink-2);
+    background: transparent;
+    border: 1px solid var(--line);
+    border-radius: 100px;
+    padding: 0.3rem 0.85rem;
+    cursor: pointer;
+    transition: all 0.15s ease;
+  }
+
+  .pub-filter:hover {
+    color: var(--ink);
+    border-color: var(--line-strong);
+  }
+
+  .pub-filter[aria-pressed='true'] {
+    color: var(--accent);
+    background: var(--accent-soft);
+    border-color: var(--accent-line);
+  }
+
+  .pub {
+    display: grid;
+    grid-template-columns: 4rem minmax(0, 1fr);
+    gap: var(--s-4);
+    padding-block: var(--s-5);
+    border-top: 1px solid var(--line);
+  }
+
+  .pub[hidden] {
+    display: none;
+  }
+
+  .pub-year {
+    font-variant-numeric: tabular-nums;
+    padding-top: 0.2rem;
+  }
+
+  .pub-title {
+    font-size: var(--step-1);
+    font-weight: 600;
+    line-height: 1.35;
+    letter-spacing: -0.008em;
+  }
+
+  .pub-title a {
+    color: inherit;
+    text-decoration: none;
+  }
+
+  .pub-title a:hover {
+    color: var(--accent);
+    text-decoration: underline;
+    text-underline-offset: 0.18em;
+  }
+
+  .pub-authors {
+    margin: var(--s-2) 0 0;
+    font-size: var(--step--1);
+    color: var(--ink-2);
+    line-height: 1.55;
+  }
+
+  .pub-authors strong {
+    color: var(--ink);
+    font-weight: 600;
+  }
+
+  .pub-venue {
+    margin: 0.15rem 0 0;
+    font-size: var(--step--1);
+    color: var(--ink-3);
+    font-style: italic;
+  }
+
+  .pub-meta {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: var(--s-2);
+    margin-top: var(--s-3);
+  }
+
+  .pub-tag {
+    font-family: var(--font-mono);
+    font-size: var(--step--2);
+    letter-spacing: 0.02em;
+    border-radius: 100px;
+    padding: 0.15em 0.65em;
+    border: 1px solid var(--line);
+    color: var(--ink-3);
+    background: var(--surface-2);
+    white-space: nowrap;
+  }
+
+  .pub-tag--venue {
+    color: var(--ink-2);
+  }
+
+  .pub-tag--first,
+  .pub-tag--note {
+    color: var(--accent);
+    background: var(--accent-soft);
+    border-color: var(--accent-line);
+  }
+
+  .pub-tag--status {
+    border-style: dashed;
+  }
+
+  .pub-cites {
+    font-size: var(--step--2);
+    color: var(--ink-3);
+    margin-left: auto;
+  }
+
+  .pub-links {
+    margin-top: var(--s-3);
+  }
+
+  .pub-links a {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.3rem;
+  }
+
+  .pub-empty {
+    padding: var(--s-6) 0;
+    color: var(--ink-3);
+  }
+
+  @media (max-width: 640px) {
+    .pub {
+      grid-template-columns: minmax(0, 1fr);
+      gap: var(--s-2);
+    }
+
+    .pub-year {
+      padding-top: 0;
+    }
+
+    .pub-cites {
+      margin-left: 0;
+    }
+  }
+</style>
+
+<script>
+  const root = document.querySelector<HTMLElement>('.pubs');
+  if (root) {
+    const buttons = root.querySelectorAll<HTMLButtonElement>('[data-filter-btn]');
+    const items = root.querySelectorAll<HTMLElement>('.pub');
+
+    const apply = (filter: string) => {
+      root.dataset.filter = filter;
+      items.forEach((item) => {
+        const show =
+          filter === 'all' ||
+          (filter === 'selected' && item.dataset.selected === 'true') ||
+          item.dataset.type === filter;
+        item.hidden = !show;
+      });
+      buttons.forEach((button) => {
+        button.setAttribute('aria-pressed', String(button.dataset.filterBtn === filter));
+      });
+    };
+
+    buttons.forEach((button) => {
+      button.addEventListener('click', () => apply(button.dataset.filterBtn!));
+    });
+
+    apply('selected');
+
+    // Deep links from the research themes must reveal a hidden entry.
+    const revealFromHash = () => {
+      const id = decodeURIComponent(location.hash.replace('#', ''));
+      if (!id.startsWith('pub-')) return;
+      const target = document.getElementById(id);
+      if (target?.hidden) {
+        apply('all');
+        requestAnimationFrame(() => target.scrollIntoView({ block: 'center' }));
+      }
+      target?.classList.add('pub--flash');
+      setTimeout(() => target?.classList.remove('pub--flash'), 1600);
+    };
+
+    window.addEventListener('hashchange', revealFromHash);
+    if (location.hash) revealFromHash();
+  }
+</script>
+
+<style is:global>
+  .pub--flash {
+    animation: pub-flash 1.6s ease;
+  }
+
+  @keyframes pub-flash {
+    0%,
+    60% {
+      background: var(--accent-soft);
+    }
+    100% {
+      background: transparent;
+    }
+  }
+</style>

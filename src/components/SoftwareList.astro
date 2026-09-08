@@ -1,0 +1,81 @@
+---
+import { software } from '../data/cv';
+import Icon from './Icon.astro';
+---
+
+<ul class="software">
+  {
+    software.map((item) => (
+      <li class="software-item">
+        <div class="software-head">
+          <h3 class="software-name">
+            <a href={item.href} target="_blank" rel="noopener">
+              {item.name}
+              <Icon name="arrow" size={14} />
+            </a>
+          </h3>
+          {item.meta && <span class="chip">{item.meta}</span>}
+        </div>
+        <p class="software-role mono">{item.role}</p>
+        <p class="software-desc">{item.description}</p>
+      </li>
+    ))
+  }
+</ul>
+
+<style>
+  .software {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: var(--s-5);
+  }
+
+  .software-item {
+    border: 1px solid var(--line);
+    border-radius: var(--radius-lg);
+    padding: var(--s-5);
+    background: var(--surface);
+    transition: border-color 0.18s ease;
+  }
+
+  .software-item:hover {
+    border-color: var(--line-strong);
+  }
+
+  .software-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--s-3);
+    flex-wrap: wrap;
+  }
+
+  .software-name {
+    font-size: var(--step-1);
+  }
+
+  .software-name a {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    color: inherit;
+    text-decoration: none;
+  }
+
+  .software-name a:hover {
+    color: var(--accent);
+  }
+
+  .software-role {
+    margin: var(--s-2) 0 0;
+    color: var(--accent);
+    font-size: var(--step--2);
+  }
+
+  .software-desc {
+    margin: var(--s-3) 0 0;
+    font-size: var(--step--1);
+    color: var(--ink-2);
+    line-height: 1.6;
+  }
+</style>
