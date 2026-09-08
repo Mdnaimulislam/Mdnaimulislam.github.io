@@ -1,0 +1,15 @@
+import { chromium } from 'playwright';
+import { createServer } from 'node:http';
+import { readFile, stat } from 'node:fs/promises';
+import { extname, join, normalize } from 'node:path';
+const ROOT = new URL('../dist/', import.meta.url).pathname;
+const MIME={'.html':'text/html','.css':'text/css','.js':'text/javascript','.svg':'image/svg+xml','.jpg':'image/jpeg','.webp':'image/webp','.png':'image/png','.woff2':'font/woff2'};
+const server=createServer(async(req,res)=>{let p=normalize(decodeURIComponent(req.url.split('?')[0]));if(p.endsWith('/'))p+='index.html';const f=join(ROOT,p);const s=await stat(f).catch(()=>null);if(!s?.isFile()){res.writeHead(404);return res.end();}res.writeHead(200,{'Content-Type':MIME[extname(f)]??'application/octet-stream'});res.end(await readFile(f));});
+await new Promise(r=>server.listen(4322,r));
+const b=await chromium.launch({executablePath:'/opt/pw-browsers/chromium'});
+const p=await b.newPage({viewport:{width:1200,height:630}});
+await p.goto('http://localhost:4322/__og.html',{waitUntil:'networkidle'});
+await p.waitForTimeout(400);
+await p.screenshot({path:'public/og.png'});
+console.log('og written');
+await b.close();server.close();
