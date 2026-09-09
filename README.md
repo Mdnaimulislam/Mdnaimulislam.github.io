@@ -56,10 +56,18 @@ only for ordering — the page does not print per-paper counts.
 In `src/data/site.ts`, update `metrics` — change the numbers **and** `asOf`
 together so the date on the page stays honest.
 
+### Changing a research area
+
+`src/data/research.ts` holds three areas. Each names a figure taken from the
+paper in `figureCredit`; the image itself lives at
+`public/img/research/<id>.webp` and `.jpg`, sized to 1000px wide. To swap one,
+replace both files and update `figureAlt` so the description still matches.
+
 ### Adding a news item
 
-Add an entry to the top of the `news` array in `src/data/news.ts`. Newest first;
-keep the list to roughly the last two years.
+Add an entry to the top of the `news` array in `src/data/news.ts`. Newest first.
+Keep it to papers accepted or published and talks given — organising and
+committee work belongs under Awards and service.
 
 ### Replacing the CV or the photo
 
