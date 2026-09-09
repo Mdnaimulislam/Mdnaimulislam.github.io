@@ -5,30 +5,33 @@ export interface NewsItem {
   text: string;
 }
 
-/** Newest first. Keep to roughly the last two years. */
+/**
+ * Newest first. Papers and talks only — accepted or published work, and
+ * invited or conference talks.
+ */
 export const news: NewsItem[] = [
   {
     date: 'Jul 2026',
-    text: '“Interpretable Multimodal Learning for Cardiovascular Hemodynamics Assessment” appeared in <a href="https://doi.org/10.1109/TMI.2026.3681722">IEEE Transactions on Medical Imaging</a>.',
+    text: '“Interpretable Multimodal Learning for Cardiovascular Hemodynamics Assessment” published in <a href="https://doi.org/10.1109/TMI.2026.3681722">IEEE Transactions on Medical Imaging</a>.',
   },
   {
     date: 'Jan 2026',
-    text: 'Talk on single-cell surface proteomics at AI, Engineering Biology and Beyond, University of Bristol.',
+    text: 'Talk on model-based PD-1 gating in CD8 T cells at AI, Engineering Biology and Beyond, University of Bristol.',
   },
   {
     date: 'Oct 2025',
-    text: '“Towards deployment-centric multimodal AI beyond vision and language” appeared in <a href="https://doi.org/10.1038/s42256-025-01116-5">Nature Machine Intelligence</a>.',
+    text: '“Towards deployment-centric multimodal AI beyond vision and language” published in <a href="https://doi.org/10.1038/s42256-025-01116-5">Nature Machine Intelligence</a>.',
   },
   {
     date: 'Sep 2025',
-    text: 'Spoke at the Third Workshop on Multimodal AI at the Barbican Centre, London, and organised its mini-hackathon.',
-  },
-  {
-    date: 'Jul 2025',
-    text: 'Co-organised the EMBC workshop “Open Biomedical Multimodal AI Research: From Pixels to Molecules” in Copenhagen.',
+    text: 'Talk on LS-EMVAE at the Third Workshop on Multimodal AI, Barbican Centre, London.',
   },
   {
     date: 'Oct 2024',
-    text: 'Executive Chair of the MICCAI workshop on Advancing Data Solutions in Medical Imaging AI, Morocco.',
+    text: '“Multimodal Variational Autoencoder for Low-cost Cardiac Hemodynamics Instability Detection” accepted at <a href="https://doi.org/10.1007/978-3-031-72378-0_28">MICCAI 2024</a> as an early accept, in the top 11% of submissions.',
+  },
+  {
+    date: 'Jun 2024',
+    text: 'Talk on CardioVAE at the Second Workshop on Multimodal AI, University of Sheffield.',
   },
 ];

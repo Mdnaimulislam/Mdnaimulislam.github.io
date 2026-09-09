@@ -24,34 +24,14 @@ export const appointments: Appointment[] = [
     end: 'Aug 2023',
   },
   {
-    role: 'Research and Course Support, Turing Network Development Award',
-    org: 'University of Sheffield',
-    location: 'Sheffield, UK',
-    start: 'Sep 2022',
-    end: 'Mar 2023',
-  },
-  {
     role: 'Senior Software Engineer',
     org: 'Robo Tech Valley',
     location: 'Dhaka, Bangladesh',
     start: 'Jan 2021',
     end: 'Aug 2021',
   },
-  {
-    role: 'Teaching Assistant',
-    org: 'North South University',
-    location: 'Dhaka, Bangladesh',
-    start: 'Spring 2020',
-    end: 'Summer 2021',
-  },
-  {
-    role: 'Full Stack Web Developer, Internship',
-    org: 'BUET E-learning Research and Development Lab',
-    location: 'Dhaka, Bangladesh',
-    start: 'Sep 2020',
-    end: 'Dec 2020',
-  },
 ];
+
 
 export interface Degree {
   degree: string;
@@ -221,32 +201,12 @@ export const software: Software[] = [
     meta: '480+ stars',
   },
   {
-    name: 'UK Open Multimodal AI Network',
-    role: 'Creator and core maintainer of the network website',
-    description:
-      'The public home of the EPSRC-funded UKOMAIN network, covering events, funding calls, resources and the multimodal AI landscape explorer.',
-    href: 'https://multimodalai.github.io/',
-    meta: '2023–2026',
-  },
-  {
-    name: 'Open Biomedical Multimodal AI tutorials',
-    role: 'Core contributor',
-    description:
-      'Hands-on teaching material for multimodal AI in biomedicine, used at the EMBC 2025 workshop and network events.',
-    href: 'https://github.com/pykale/mmai-tutorials',
-  },
-  {
     name: 'Introduction to Transparent Machine Learning',
     role: 'Contributor',
     description:
-      'An online learning course in responsible AI supported by the Alan Turing Institute.',
+      'An online learning course in responsible AI, supported by the Alan Turing Institute.',
     href: 'https://github.com/alan-turing-institute/Intro-to-transparent-ML-course',
     meta: '2022',
   },
-  {
-    name: 'EduBot',
-    role: 'Creator and maintainer',
-    description: 'Software for connecting with an educational robot.',
-    href: 'https://github.com/Mdnaimulislam/EduBot-FinalApp',
-  },
 ];
+

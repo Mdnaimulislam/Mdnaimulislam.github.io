@@ -26,7 +26,7 @@ export const site = {
   bio: [
     'I am an AI Research Engineer at the <a href="https://www.sheffield.ac.uk/machine-intelligence">Centre for Machine Intelligence</a>, University of Sheffield, working with <a href="https://haipinglu.github.io/">Professor Haiping Lu</a>. I am also a part-time PhD student in the <a href="https://www.sheffield.ac.uk/cs">School of Computer Science</a>.',
     'My research is on multimodal machine learning for healthcare. I develop methods that estimate cardiovascular measurements normally obtained by invasive catheterisation from routinely collected imaging and clinical data, working with clinicians at <a href="https://www.sth.nhs.uk/">Sheffield Teaching Hospitals NHS Foundation Trust</a>.',
-    'I am a core maintainer of <a href="https://github.com/pykale/pykale">PyKale</a>, a multimodal learning library in the PyTorch ecosystem, and I build and run the community activities of the <a href="https://multimodalai.github.io/">UK Open Multimodal AI Network</a>.',
+    'I am one of the core maintainers of <a href="https://github.com/pykale/pykale">PyKale</a>, a multimodal learning library in the PyTorch ecosystem, and I help organise community activities for the <a href="https://multimodalai.github.io/">UK Open Multimodal AI Network</a>.',
   ],
   interests: [
     {
@@ -43,7 +43,7 @@ export const site = {
     },
     {
       label: 'Research software',
-      detail: 'PyKale, reproducible multimodal pipelines, open benchmarks',
+      detail: 'PyKale, deployment-centric AI, reproducible multimodal pipelines',
     },
   ] as Interest[],
   /** Google Scholar figures. Update the numbers and `asOf` together. */
