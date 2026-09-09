@@ -92,18 +92,6 @@ export const awards: Award[] = [
     year: '2022',
     detail: 'MSc, academic year 2021/22.',
   },
-  {
-    title: 'Cum Laude',
-    org: 'North South University',
-    year: '2020',
-    detail: 'BSc academic performance distinction.',
-  },
-  {
-    title: 'Academic Excellence Scholarship',
-    org: 'North South University',
-    year: '2017–2020',
-    detail: 'Merit scholarship covering 25% of tuition fees.',
-  },
 ];
 
 export interface Talk {
@@ -172,13 +160,6 @@ export const service: ServiceGroup[] = [
       'International Conference on Medical Image Computing and Computer Assisted Intervention, 2025 and 2026',
       'MICCAI Workshop on Advancing Data Solutions in Medical Imaging AI, 2024',
       'International Conference on Recent Trends in Image Processing and Pattern Recognition, 2023',
-    ],
-  },
-  {
-    heading: 'Grant applications',
-    items: [
-      'Co-applicant, NIHR Programme Development Grant (PIs: Prof. Andy Swift and Prof. David G. Kiely), submitted',
-      'Co-applicant, UKRI Generative AI Hub Dataset Creation Challenge (PI: Dr Chen Chen), submitted',
     ],
   },
 ];

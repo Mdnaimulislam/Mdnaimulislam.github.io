@@ -30,8 +30,4 @@ export const news: NewsItem[] = [
     date: 'Oct 2024',
     text: '“Multimodal Variational Autoencoder for Low-cost Cardiac Hemodynamics Instability Detection” accepted at <a href="https://doi.org/10.1007/978-3-031-72378-0_28">MICCAI 2024</a> as an early accept, in the top 11% of submissions.',
   },
-  {
-    date: 'Jun 2024',
-    text: 'Talk on CardioVAE at the Second Workshop on Multimodal AI, University of Sheffield.',
-  },
 ];
