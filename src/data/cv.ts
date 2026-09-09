@@ -5,7 +5,6 @@ export interface Appointment {
   location: string;
   start: string;
   end: string;
-  detail?: string;
 }
 
 export const appointments: Appointment[] = [
@@ -16,8 +15,6 @@ export const appointments: Appointment[] = [
     location: 'Sheffield, UK',
     start: 'Sep 2023',
     end: 'Present',
-    detail:
-      'Multimodal machine learning for cardiovascular and respiratory disease, with clinical partners at Sheffield Teaching Hospitals NHS Foundation Trust. Also research software maintenance and support for the events of the UK Open Multimodal AI Network.',
   },
   {
     role: 'Research Assistant, Machine Learning for Medical Image Analysis',
@@ -32,8 +29,6 @@ export const appointments: Appointment[] = [
     location: 'Sheffield, UK',
     start: 'Sep 2022',
     end: 'Mar 2023',
-    detail:
-      'Contributed to An Introduction to Transparent Machine Learning, an online course in responsible AI supported by the Alan Turing Institute.',
   },
   {
     role: 'Senior Software Engineer',

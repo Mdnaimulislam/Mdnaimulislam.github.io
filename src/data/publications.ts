@@ -289,10 +289,3 @@ export const publications: Publication[] = [
     links: [{ label: 'DOI', href: 'https://doi.org/10.1109/IICAIET49801.2020.9257843' }],
   },
 ];
-
-export const publicationStats = {
-  total: publications.length,
-  journal: publications.filter((p) => p.type === 'journal').length,
-  conference: publications.filter((p) => p.type === 'conference').length,
-  firstAuthor: publications.filter((p) => p.authorPosition === 'first').length,
-};

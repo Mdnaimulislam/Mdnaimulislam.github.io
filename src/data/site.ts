@@ -1,15 +1,18 @@
 export interface ProfileLink {
   label: string;
   href: string;
-  icon: 'email' | 'scholar' | 'github' | 'linkedin' | 'orcid' | 'cv';
-  /** Shown in the compact footer/contact rail as well as the hero. */
+  icon: 'email' | 'scholar' | 'github' | 'linkedin' | 'orcid' | 'cv' | 'page';
   handle?: string;
+}
+
+export interface Interest {
+  label: string;
+  detail: string;
 }
 
 export const site = {
   name: 'Mohammod Naimul Islam Suvon',
   shortName: 'Mohammod Suvon',
-  initials: 'MS',
   role: 'AI Research Engineer',
   group: 'Centre for Machine Intelligence',
   institution: 'University of Sheffield',
@@ -17,30 +20,33 @@ export const site = {
   email: 'm.suvon@sheffield.ac.uk',
   url: 'https://mdnaimulislam.github.io',
   /**
-   * One-line positioning statement used in the hero and in page metadata.
+   * Biography. Plain paragraphs; inline <a> is allowed and rendered as HTML.
+   * Keep it factual and short — three paragraphs at most.
    */
-  tagline:
-    'Multimodal machine learning for cardiovascular health, built to work with the tests clinics already have.',
-  /**
-   * Homepage introduction. Two short paragraphs — the first says what the work
-   * is for, the second says how it is done and where it goes.
-   */
-  intro: [
-    'I build multimodal machine learning methods that read several kinds of clinical data at once, including cardiac MRI, chest radiographs, electrocardiograms and routine clinical measurements, and turn them into measurements that normally require an invasive catheter. The aim is practical: bring cardiovascular assessment closer to the point of care, where the expensive scan is often unavailable.',
-    'I work at the Centre for Machine Intelligence at the University of Sheffield with Professor Haiping Lu, alongside clinicians at Sheffield Teaching Hospitals NHS Foundation Trust, and I am also a part-time PhD student in the School of Computer Science. Much of what I build is released as open-source software, and I help maintain PyKale and run the community events of the UK Open Multimodal AI Network.',
+  bio: [
+    'I am an AI Research Engineer at the <a href="https://www.sheffield.ac.uk/machine-intelligence">Centre for Machine Intelligence</a>, University of Sheffield, working with <a href="https://haipinglu.github.io/">Professor Haiping Lu</a>. I am also a part-time PhD student in the <a href="https://www.sheffield.ac.uk/cs">School of Computer Science</a>.',
+    'My research is on multimodal machine learning for healthcare. I develop methods that estimate cardiovascular measurements normally obtained by invasive catheterisation from routinely collected imaging and clinical data, working with clinicians at <a href="https://www.sth.nhs.uk/">Sheffield Teaching Hospitals NHS Foundation Trust</a>.',
+    'I am a core maintainer of <a href="https://github.com/pykale/pykale">PyKale</a>, a multimodal learning library in the PyTorch ecosystem, and I build and run the community activities of the <a href="https://multimodalai.github.io/">UK Open Multimodal AI Network</a>.',
   ],
   interests: [
-    'Multimodal learning',
-    'Medical imaging',
-    'Cardiovascular AI',
-    'Representation learning',
-    'Low-cost clinical AI',
-    'Open-source ML',
-  ],
-  /**
-   * Google Scholar figures. Read from the public profile — update the numbers
-   * and `asOf` together when you refresh them.
-   */
+    {
+      label: 'Multimodal learning',
+      detail: 'Representation learning, variational autoencoders, modality fusion, transfer learning',
+    },
+    {
+      label: 'Medical imaging and signals',
+      detail: 'Cardiac MRI, chest radiographs, 12- and 6-lead electrocardiograms',
+    },
+    {
+      label: 'Clinical AI',
+      detail: 'Cardiovascular haemodynamics, pulmonary hypertension, point-of-care models',
+    },
+    {
+      label: 'Research software',
+      detail: 'PyKale, reproducible multimodal pipelines, open benchmarks',
+    },
+  ] as Interest[],
+  /** Google Scholar figures. Update the numbers and `asOf` together. */
   metrics: {
     citations: 194,
     hIndex: 9,
@@ -58,5 +64,10 @@ export const links: ProfileLink[] = [
   { label: 'GitHub', href: 'https://github.com/Mdnaimulislam', icon: 'github', handle: 'Mdnaimulislam' },
   { label: 'LinkedIn', href: 'https://www.linkedin.com/in/md-naimul/', icon: 'linkedin', handle: 'md-naimul' },
   { label: 'ORCID', href: 'https://orcid.org/0000-0001-9962-315X', icon: 'orcid', handle: '0000-0001-9962-315X' },
+  {
+    label: 'University profile',
+    href: 'https://www.sheffield.ac.uk/cs/people/research-staff/mohammod-naimul-islam-suvon',
+    icon: 'page',
+  },
   { label: 'CV', href: '/Mohammod_Suvon_CV.pdf', icon: 'cv' },
 ];
