@@ -50,7 +50,7 @@
   --radius: 6px;
   --radius-lg: 10px;
 
-  --section-pad: clamp(3.5rem, 7vw, 6.5rem);
+  --section-pad: clamp(2.5rem, 5vw, 4rem);
   --gutter: clamp(1.25rem, 5vw, 2.5rem);
 }
 
@@ -202,37 +202,10 @@ ol {
   border-top: 0;
 }
 
-.section-head {
-  display: flex;
-  align-items: baseline;
-  gap: var(--s-4);
-  margin-bottom: var(--s-6);
-  flex-wrap: wrap;
-}
-
 .section-title {
-  font-size: var(--step-3);
-  letter-spacing: -0.015em;
-}
-
-.section-kicker {
-  font-family: var(--font-mono);
-  font-size: var(--step--2);
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: var(--ink-3);
-  margin: 0 0 var(--s-3);
-  display: block;
-  font-weight: 500;
-}
-
-.section-lede {
-  color: var(--ink-2);
-  max-width: var(--wrap-prose);
-  font-size: var(--step-1);
-  line-height: 1.6;
-  margin-top: calc(var(--s-2) * -1);
-  margin-bottom: var(--s-6);
+  font-size: var(--step-2);
+  letter-spacing: -0.012em;
+  margin-bottom: var(--s-5);
 }
 
 .skip-link {
@@ -281,12 +254,6 @@ ol {
   gap: var(--s-2);
 }
 
-.card {
-  background: var(--surface);
-  border: 1px solid var(--line);
-  border-radius: var(--radius-lg);
-  padding: var(--s-5);
-}
 
 .link-list {
   display: flex;
