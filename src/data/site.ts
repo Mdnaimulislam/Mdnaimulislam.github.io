@@ -27,7 +27,7 @@ export const site = {
    */
   intro: [
     'I build multimodal machine learning methods that read several kinds of clinical data at once, including cardiac MRI, chest radiographs, electrocardiograms and routine clinical measurements, and turn them into measurements that normally require an invasive catheter. The aim is practical: bring cardiovascular assessment closer to the point of care, where the expensive scan is often unavailable.',
-    'I work at the Centre for Machine Intelligence at the University of Sheffield with Professor Haiping Lu, alongside clinicians at Sheffield Teaching Hospitals NHS Foundation Trust, and I am a part-time PhD student in the same School. Much of what I build is released as open-source software, and I help maintain PyKale and run the community events of the UK Open Multimodal AI Network.',
+    'I work at the Centre for Machine Intelligence at the University of Sheffield with Professor Haiping Lu, alongside clinicians at Sheffield Teaching Hospitals NHS Foundation Trust, and I am also a part-time PhD student in the School of Computer Science. Much of what I build is released as open-source software, and I help maintain PyKale and run the community events of the UK Open Multimodal AI Network.',
   ],
   interests: [
     'Multimodal learning',

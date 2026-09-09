@@ -17,7 +17,7 @@ export const appointments: Appointment[] = [
     start: 'Sep 2023',
     end: 'Present',
     detail:
-      'Multimodal machine learning for cardiovascular and respiratory disease, with clinical partners at Sheffield Teaching Hospitals NHS Foundation Trust. Maintains research software and supports the UK Open Multimodal AI Network.',
+      'Multimodal machine learning for cardiovascular and respiratory disease, with clinical partners at Sheffield Teaching Hospitals NHS Foundation Trust. Also research software maintenance and support for the events of the UK Open Multimodal AI Network.',
   },
   {
     role: 'Research Assistant, Machine Learning for Medical Image Analysis',
@@ -245,7 +245,7 @@ export const software: Software[] = [
     role: 'Contributor',
     description:
       'An online learning course in responsible AI supported by the Alan Turing Institute.',
-    href: 'https://github.com/pykale/Intro-to-transparent-ML-course',
+    href: 'https://github.com/alan-turing-institute/Intro-to-transparent-ML-course',
     meta: '2022',
   },
   {

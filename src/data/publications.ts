@@ -104,7 +104,7 @@ export const publications: Publication[] = [
     themes: ['cardiovascular', 'low-cost', 'representation'],
     selected: true,
     links: [
-      { label: 'DOI', href: 'https://doi.org/10.1007/978-3-031-72378-0' },
+      { label: 'DOI', href: 'https://doi.org/10.1007/978-3-031-72378-0_28' },
       { label: 'arXiv', href: 'https://arxiv.org/abs/2403.13658' },
       { label: 'Code', href: 'https://github.com/Shef-AIRE/AI4Cardiothoracic-CardioVAE' },
     ],
@@ -123,7 +123,7 @@ export const publications: Publication[] = [
     citations: 14,
     themes: ['cardiovascular', 'representation'],
     selected: true,
-    links: [{ label: 'DOI', href: 'https://doi.org/10.1007/978-3-031-43990-2' }],
+    links: [{ label: 'DOI', href: 'https://doi.org/10.1007/978-3-031-43990-2_20' }],
   },
   {
     id: 'multi-omics-survey',
