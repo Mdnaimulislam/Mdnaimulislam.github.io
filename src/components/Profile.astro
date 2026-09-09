@@ -75,7 +75,7 @@ import Icon from './Icon.astro';
 
   .profile-grid {
     display: grid;
-    grid-template-columns: 16rem minmax(0, 1fr);
+    grid-template-columns: 18.5rem minmax(0, 1fr);
     gap: clamp(2rem, 6vw, 4.5rem);
     align-items: start;
   }
@@ -85,7 +85,7 @@ import Icon from './Icon.astro';
   }
 
   .portrait {
-    width: 11.5rem;
+    width: 14rem;
     height: auto;
     aspect-ratio: 1;
     object-fit: cover;
@@ -95,7 +95,7 @@ import Icon from './Icon.astro';
   }
 
   .identity-name {
-    font-size: var(--step-2);
+    font-size: var(--step-3);
     font-weight: 600;
     letter-spacing: -0.014em;
     line-height: 1.2;
@@ -103,14 +103,14 @@ import Icon from './Icon.astro';
 
   .identity-role {
     margin: var(--s-2) 0 0;
-    font-size: var(--step--1);
+    font-size: var(--step-0);
     color: var(--accent);
     font-weight: 500;
   }
 
   .identity-affiliation {
     margin: var(--s-2) 0 0;
-    font-size: var(--step--1);
+    font-size: var(--step-0);
     color: var(--ink-3);
     line-height: 1.55;
   }
@@ -141,22 +141,23 @@ import Icon from './Icon.astro';
 
   .bio p {
     color: var(--ink-2);
+    font-size: var(--step-1);
     line-height: 1.7;
-    max-width: 68ch;
+    max-width: 72ch;
   }
 
   .bio-heading {
-    font-size: var(--step-0);
+    font-size: var(--step-1);
     font-weight: 600;
     margin: var(--s-5) 0 var(--s-3);
   }
 
   .interests li {
     display: grid;
-    grid-template-columns: 14rem minmax(0, 1fr);
+    grid-template-columns: 15rem minmax(0, 1fr);
     gap: var(--s-3);
-    padding: 0.35rem 0;
-    font-size: var(--step--1);
+    padding: 0.4rem 0;
+    font-size: var(--step-0);
     line-height: 1.55;
   }
 
@@ -173,7 +174,7 @@ import Icon from './Icon.astro';
     margin-top: var(--s-5);
     padding-top: var(--s-4);
     border-top: 1px solid var(--line);
-    font-size: var(--step--1);
+    font-size: var(--step-0);
     color: var(--ink-2);
     font-variant-numeric: tabular-nums;
   }
@@ -191,14 +192,14 @@ import Icon from './Icon.astro';
 
     .identity {
       display: grid;
-      grid-template-columns: 5.5rem minmax(0, 1fr);
+      grid-template-columns: 6rem minmax(0, 1fr);
       gap: var(--s-4);
       text-align: left;
       align-items: center;
     }
 
     .portrait {
-      width: 5.5rem;
+      width: 6rem;
       margin: 0;
       grid-row: span 2;
     }
