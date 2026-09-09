@@ -60,7 +60,7 @@ for (const vp of [
     // theme deep link should reveal a hidden entry
     await page.click('[data-filter-btn="selected"]');
     await page.waitForTimeout(200);
-    await page.click('a[href="#pub-medslip"]');
+    await page.click('a[href="#pub-bibm-2022-pah-mortality"]');
     await page.waitForTimeout(900);
     const visible = await page.evaluate(() => !document.getElementById('pub-bibm-2022-pah-mortality')?.hidden);
     if (!visible) problems.push('theme deep link did not reveal the hidden publication');
