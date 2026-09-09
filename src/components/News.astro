@@ -1,0 +1,49 @@
+---
+import { news } from '../data/news';
+---
+
+<ol class="news">
+  {
+    news.map((item) => (
+      <li>
+        <p class="news-date mono">{item.date}</p>
+        <p class="news-text" set:html={item.text} />
+      </li>
+    ))
+  }
+</ol>
+
+<style>
+  .news li {
+    display: grid;
+    grid-template-columns: 6rem minmax(0, 1fr);
+    gap: var(--s-4);
+    padding-block: 0.55rem;
+    align-items: baseline;
+  }
+
+  .news li + li {
+    border-top: 1px solid var(--line);
+  }
+
+  .news-date {
+    margin: 0;
+    color: var(--ink-3);
+    white-space: nowrap;
+  }
+
+  .news-text {
+    margin: 0;
+    font-size: var(--step--1);
+    line-height: 1.6;
+    color: var(--ink-2);
+    max-width: 78ch;
+  }
+
+  @media (max-width: 640px) {
+    .news li {
+      grid-template-columns: minmax(0, 1fr);
+      gap: 0.15rem;
+    }
+  }
+</style>

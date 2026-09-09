@@ -3,18 +3,19 @@ import { site } from '../data/site';
 
 const items = [
   { id: 'about', label: 'About' },
+  { id: 'news', label: 'News' },
   { id: 'research', label: 'Research' },
-  { id: 'projects', label: 'Projects' },
   { id: 'publications', label: 'Publications' },
+  { id: 'software', label: 'Software' },
+  { id: 'talks', label: 'Talks' },
   { id: 'experience', label: 'Experience' },
-  { id: 'service', label: 'Service' },
   { id: 'contact', label: 'Contact' },
 ];
 ---
 
 <header class="site-nav">
   <div class="wrap nav-inner">
-    <a class="nav-brand" href="#top">
+    <a class="nav-brand" href="#about">
       <span class="nav-brand-name">{site.shortName}</span>
       <span class="nav-brand-role">{site.role}</span>
     </a>
@@ -106,7 +107,7 @@ const items = [
 
   .nav-links ul {
     display: flex;
-    gap: var(--s-5);
+    gap: var(--s-4);
   }
 
   .nav-links a {

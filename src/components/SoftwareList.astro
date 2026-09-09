@@ -7,57 +7,45 @@ import Icon from './Icon.astro';
   {
     software.map((item) => (
       <li class="software-item">
-        <div class="software-head">
+        <div class="software-name-col">
           <h3 class="software-name">
             <a href={item.href} target="_blank" rel="noopener">
               {item.name}
-              <Icon name="arrow" size={14} />
+              <Icon name="arrow" size={13} />
             </a>
           </h3>
-          {item.meta && <span class="chip">{item.meta}</span>}
+          {item.meta && <p class="software-meta mono">{item.meta}</p>}
         </div>
-        <p class="software-role mono">{item.role}</p>
-        <p class="software-desc">{item.description}</p>
+        <div class="software-body">
+          <p class="software-role">{item.role}</p>
+          <p class="software-desc">{item.description}</p>
+        </div>
       </li>
     ))
   }
 </ul>
 
 <style>
-  .software {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: var(--s-5);
-  }
-
   .software-item {
-    border: 1px solid var(--line);
-    border-radius: var(--radius-lg);
-    padding: var(--s-5);
-    background: var(--surface);
-    transition: border-color 0.18s ease;
+    display: grid;
+    grid-template-columns: 16rem minmax(0, 1fr);
+    gap: var(--s-4);
+    padding-block: var(--s-4);
+    align-items: start;
   }
 
-  .software-item:hover {
-    border-color: var(--line-strong);
-  }
-
-  .software-head {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: var(--s-3);
-    flex-wrap: wrap;
+  .software-item + .software-item {
+    border-top: 1px solid var(--line);
   }
 
   .software-name {
-    font-size: var(--step-1);
+    font-size: var(--step-0);
+    font-weight: 600;
+    line-height: 1.35;
   }
 
   .software-name a {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.35rem;
+    display: inline;
     color: inherit;
     text-decoration: none;
   }
@@ -66,16 +54,37 @@ import Icon from './Icon.astro';
     color: var(--accent);
   }
 
-  .software-role {
-    margin: var(--s-2) 0 0;
+  .software-name :global(svg) {
+    vertical-align: -1px;
+    margin-left: 0.15rem;
     color: var(--accent);
+  }
+
+  .software-meta {
+    margin: 0.2rem 0 0;
     font-size: var(--step--2);
+    color: var(--ink-3);
+  }
+
+  .software-role {
+    margin: 0;
+    font-size: var(--step--1);
+    font-weight: 500;
+    color: var(--accent);
   }
 
   .software-desc {
-    margin: var(--s-3) 0 0;
+    margin: 0.25rem 0 0;
     font-size: var(--step--1);
-    color: var(--ink-2);
     line-height: 1.6;
+    color: var(--ink-2);
+    max-width: 74ch;
+  }
+
+  @media (max-width: 760px) {
+    .software-item {
+      grid-template-columns: minmax(0, 1fr);
+      gap: var(--s-2);
+    }
   }
 </style>

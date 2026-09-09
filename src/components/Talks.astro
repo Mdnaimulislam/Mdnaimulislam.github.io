@@ -1,0 +1,59 @@
+---
+import { talks } from '../data/cv';
+---
+
+<ol class="talks">
+  {
+    talks.map((talk) => (
+      <li>
+        <p class="talk-date mono">{talk.date}</p>
+        <div>
+          <p class="talk-title">{talk.title}</p>
+          <p class="talk-where">
+            {talk.event}, {talk.venue}
+          </p>
+        </div>
+      </li>
+    ))
+  }
+</ol>
+
+<style>
+  .talks li {
+    display: grid;
+    grid-template-columns: 9rem minmax(0, 1fr);
+    gap: var(--s-4);
+    padding-block: var(--s-4);
+  }
+
+  .talks li + li {
+    border-top: 1px solid var(--line);
+  }
+
+  .talk-date {
+    margin: 0;
+    color: var(--ink-3);
+    white-space: nowrap;
+  }
+
+  .talk-title {
+    margin: 0;
+    font-size: var(--step-0);
+    font-weight: 500;
+    line-height: 1.45;
+    max-width: 72ch;
+  }
+
+  .talk-where {
+    margin: 0.2rem 0 0;
+    font-size: var(--step--1);
+    color: var(--ink-3);
+  }
+
+  @media (max-width: 640px) {
+    .talks li {
+      grid-template-columns: minmax(0, 1fr);
+      gap: 0.15rem;
+    }
+  }
+</style>

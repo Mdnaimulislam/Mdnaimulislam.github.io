@@ -1,0 +1,89 @@
+---
+import { researchAreas } from '../data/research';
+import { publications } from '../data/publications';
+
+const byId = new Map(publications.map((p) => [p.id, p]));
+---
+
+<ol class="areas">
+  {
+    researchAreas.map((area) => (
+      <li class="area">
+        <h3 class="area-title">{area.title}</h3>
+        <p class="area-body">{area.body}</p>
+        <ul class="area-links">
+          {area.keyWork.map((id) => {
+            const pub = byId.get(id);
+            return pub ? (
+              <li>
+                <a href={`#pub-${pub.id}`}>
+                  {pub.title} <span class="area-venue">{pub.venueShort}</span>
+                </a>
+              </li>
+            ) : null;
+          })}
+        </ul>
+      </li>
+    ))
+  }
+</ol>
+
+<style>
+  .areas {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: clamp(1.75rem, 4vw, 2.75rem) clamp(2rem, 5vw, 3.5rem);
+  }
+
+  .area-title {
+    font-size: var(--step-1);
+    font-weight: 600;
+    padding-bottom: var(--s-3);
+    border-bottom: 1px solid var(--line);
+  }
+
+  .area-body {
+    margin: var(--s-3) 0 0;
+    font-size: var(--step--1);
+    line-height: 1.65;
+    color: var(--ink-2);
+  }
+
+  .area-links {
+    margin-top: var(--s-3);
+    display: grid;
+    gap: 0.3rem;
+  }
+
+  .area-links a {
+    display: grid;
+    grid-template-columns: 1rem minmax(0, 1fr);
+    gap: 0.25rem;
+    font-size: var(--step--1);
+    text-decoration: none;
+    color: var(--ink-2);
+    line-height: 1.5;
+  }
+
+  .area-links a:hover {
+    color: var(--accent);
+  }
+
+  .area-links a::before {
+    content: '→';
+    color: var(--accent);
+  }
+
+  .area-venue {
+    font-family: var(--font-mono);
+    font-size: var(--step--2);
+    color: var(--ink-3);
+    white-space: nowrap;
+  }
+
+  @media (max-width: 820px) {
+    .areas {
+      grid-template-columns: minmax(0, 1fr);
+    }
+  }
+</style>
