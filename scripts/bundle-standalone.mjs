@@ -19,9 +19,15 @@ for (const file of await readdir(join(DIST, 'fonts'))) {
   html = html.replaceAll(`/fonts/${file}`, `data:font/woff2;base64,${data}`);
 }
 
-// 2. Inline the portrait
+// 2. Inline the portrait and the research figures
 html = html.replaceAll('/img/portrait.webp', `data:image/webp;base64,${await b64('img/portrait.webp')}`);
 html = html.replaceAll('/img/portrait.jpg', `data:image/jpeg;base64,${await b64('img/portrait.jpg')}`);
+
+for (const file of await readdir(join(DIST, 'img/research'))) {
+  const mime = file.endsWith('.webp') ? 'image/webp' : 'image/jpeg';
+  const data = await b64(join('img/research', file));
+  html = html.replaceAll(`/img/research/${file}`, `data:${mime};base64,${data}`);
+}
 
 // 3. Inline bundled module scripts
 const scriptTag = /<script type="module" src="([^"]+)"><\/script>/g;
