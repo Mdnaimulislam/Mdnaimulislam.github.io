@@ -13,11 +13,14 @@ change what the site says.**
 
 | File | What it holds |
 | --- | --- |
-| `src/data/site.ts` | Name, role, affiliation, intro paragraphs, research interests, profile links, Google Scholar metrics |
+| `src/data/site.ts` | Name, role, affiliation, biography, research interests, profile links, Google Scholar metrics |
+| `src/data/news.ts` | The News list |
 | `src/data/publications.ts` | Every paper |
-| `src/data/research.ts` | The four research themes |
-| `src/data/projects.ts` | Project cards |
-| `src/data/cv.ts` | Appointments, education, awards, talks, academic service, open-source software |
+| `src/data/research.ts` | The four research areas |
+| `src/data/cv.ts` | Appointments, education, awards, talks, academic service, software |
+
+The biography in `site.ts` and the entries in `news.ts` accept inline `<a href="…">`
+links, which are rendered as HTML. Nothing else does.
 
 ### Adding a publication
 
@@ -45,18 +48,18 @@ Only `id`, `title`, `authors`, `venue`, `venueShort`, `year`, `type`, `themes` a
 ```
 
 Sorting is automatic (newest first, then selected work, then by citations). Write
-your name as exactly `M. N. I. Suvon` so the emphasis works.
+your name as exactly `M. N. I. Suvon` so the emphasis works. `citations` is used
+only for ordering — the page does not print per-paper counts.
 
 ### Refreshing the Google Scholar figures
 
 In `src/data/site.ts`, update `metrics` — change the numbers **and** `asOf`
 together so the date on the page stays honest.
 
-### Adding a project card
+### Adding a news item
 
-Add to the `projects` array in `src/data/projects.ts`. The `diagram` field picks
-one of the four schematics in `src/components/ProjectDiagram.astro`. To add a new
-schematic, add a branch there and a new value to the `diagram` union type.
+Add an entry to the top of the `news` array in `src/data/news.ts`. Newest first;
+keep the list to roughly the last two years.
 
 ### Replacing the CV or the photo
 
@@ -134,7 +137,8 @@ setting when no choice has been made.
 
 ```bash
 npm run build
-node qa/audit.mjs      # console errors, horizontal overflow, heading order, broken anchors
+node qa/audit.mjs        # console errors, horizontal overflow, heading order, broken anchors
+node qa/live-audit.mjs   # publication filters, mobile menu, deep links
 node qa/sections.mjs 1440 light   # per-section screenshots into qa/
 ```
 
